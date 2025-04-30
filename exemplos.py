@@ -45,8 +45,6 @@ print(tarefas.tarefa1)
 print(tarefas.tarefa2)
 print(tarefas.tarefa3)
 
-        
-
 
 
 
