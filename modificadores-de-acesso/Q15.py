@@ -1,10 +1,27 @@
 class Pontuação:
-    def __init__(self):
-        self.__pontos = 10
-
+    def __init__(self,pontos):
+        self.__pontos = pontos
+    
     @property
-    def __adicionar_pontos(self):
+    def pontos(self):
         return self.__pontos
     
-p1 = Pontuação()
-p1.__adicionar_pontos()
+
+    def ad_pontos(self,valor):
+        if valor >= 0:
+            self.__pontos += valor
+            return True
+        else:
+            return False
+        
+
+p1 = Pontuação(10)
+p1.ad_pontos(200)
+print(f'seus pontos atuais são {p1.pontos}')
+
+
+
+
+
+    
+     
