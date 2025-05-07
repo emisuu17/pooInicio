@@ -5,3 +5,6 @@ class Personagem:
     @property
     def vida(self):
         return self.__vida
+    
+v1 = Personagem(150)
+print(v1.vida)
