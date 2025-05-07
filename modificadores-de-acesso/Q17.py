@@ -6,29 +6,16 @@ class Jogador:
     def energia(self):
         return self.__energia
     
-    def usar_energia(self,valor,):
-        uso = self.__energia
-        uso -= valor
-        if uso == 0:
-            print('sem energia')
-        
-        elif uso >0:
-            print(f'voce tem {uso} de energia')
-            
-        else:return False
+    def usar_energia(self,valor):
+        self.__energia -= valor
+        print(f'energia restante:{self.__energia}')
 
-    def recuperar_energia(self,valor):
-        up = self.__energia
-        up += valor
-        if up >= 100:
-            print('sua energia esta no maximo')
-        
-        else:
-            print(f'voce recuperou {valor}')
+    def recuperar_energia(self,valor2):
+        self.__energia += valor2
+        print(f'energia recuperada:{self.__energia}')
+     
+    
 
-
-
-j1 = Jogador(100)
-j1.usar_energia(100)
-j1.recuperar_energia(30)
-
+e1 = Jogador(100)
+e1.usar_energia(100)
+e1.recuperar_energia(200)
