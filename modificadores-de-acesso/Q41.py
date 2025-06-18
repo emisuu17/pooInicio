@@ -2,7 +2,6 @@ class Fase:
     def gerar_inimigos(self):
         print("Gerando inimigos padrões...")
 
-# Classe FaseDeserto que sobrescreve o método gerar_inimigos
 class FaseDeserto(Fase):
     def gerar_inimigos(self):
        
