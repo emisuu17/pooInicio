@@ -3,20 +3,17 @@ import time
 import os
 
 def limpar_tela():
-    """Limpa o console para uma melhor visualização."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 class Pontuacao:
-    """Controla e armazena a pontuação do jogador."""
     def __init__(self):
         self.pontos = 0
 
     def adicionar(self, valor):
         self.pontos += valor
-        print(f"✨ +{valor} pontos! Pontuação atual: {self.pontos}")
+        print(f"+{valor} pontos! Pontuação atual: {self.pontos}")
 
 class Inimigo:
-    """Representa um inimigo no jogo com nome, vida e capacidade de ataque."""
     def __init__(self, nome, vida=50, dano_min=5, dano_max=15):
         self.nome = nome
         self.vida_maxima = vida
@@ -25,19 +22,17 @@ class Inimigo:
         self.dano_max = dano_max
 
     def atacar(self, alvo):
-        """Ataca o jogador, causando dano à sua energia."""
         dano = random.randint(self.dano_min, self.dano_max)
-        print(f"💥 {self.nome} ataca {alvo.nome} e causa {dano} de dano!")
+        print(f"{self.nome} ataca {alvo.nome} e causa {dano} de dano!")
         alvo.receber_dano(dano)
 
     def esta_vivo(self):
         return self.vida > 0
 
     def __str__(self):
-        return f"{self.nome} (❤️ {self.vida}/{self.vida_maxima})"
+        return f"{self.nome} ({self.vida}/{self.vida_maxima})"
 
 class Jogador:
-    """Representa o jogador, com energia que funciona como vida."""
     def __init__(self, nome):
         self.nome = nome
         self.energia = 100
@@ -46,7 +41,7 @@ class Jogador:
     def atacar(self, alvo):
         custo_energia = 10
         if self.energia < custo_energia:
-            print("⚡ Energia insuficiente para atacar! Você precisa descansar.")
+            print("Energia insuficiente para atacar! Você precisa descansar.")
             return False
 
         self.energia -= custo_energia
@@ -54,16 +49,16 @@ class Jogador:
         alvo.vida -= dano
         if alvo.vida < 0:
             alvo.vida = 0
-        print(f"⚔️  Você ataca {alvo.nome}, causando {dano} de dano.")
+        print(f"Você ataca {alvo.nome}, causando {dano} de dano.")
         return True
 
     def descansar(self):
         if self.energia == self.energia_maxima:
-            print("💤 Energia já está no máximo.")
+            print("Energia já está no máximo.")
             return
         
         energia_recuperada = 20
-        print(f"💤  Você descansa e recupera {energia_recuperada} de energia.")
+        print(f"Você descansa e recupera {energia_recuperada} de energia.")
         self.energia += energia_recuperada
         if self.energia > self.energia_maxima:
             self.energia = self.energia_maxima
@@ -77,10 +72,9 @@ class Jogador:
         return self.energia > 0
 
     def __str__(self):
-        return f"Jogador: {self.nome} (⚡ {self.energia}/{self.energia_maxima})"
+        return f"Jogador: {self.nome} ({self.energia}/{self.energia_maxima})"
 
 class Menu:
-    """Exibe o menu principal e gerencia as escolhas do jogador."""
     def mostrar(self):
         limpar_tela()
         print("="*30)
@@ -95,7 +89,6 @@ class Menu:
         return input("Escolha uma opção: ")
 
 def iniciar_jogo():
-    """Contém o loop principal do jogo, da criação à conclusão."""
     limpar_tela()
     jogador = Jogador("Valente")
     placar = Pontuacao()
@@ -128,7 +121,7 @@ def iniciar_jogo():
             if escolha == '1':
                 jogador.atacar(inimigo_atual)
                 if not inimigo_atual.esta_vivo():
-                    print(f"☠️  {inimigo_atual.nome} foi derrotado!")
+                    print(f"{inimigo_atual.nome} foi derrotado!")
                     placar.adicionar(10)
                     time.sleep(2)
                     break
@@ -139,7 +132,6 @@ def iniciar_jogo():
 
             time.sleep(1)
             
-            # Turno do inimigo
             if inimigo_atual.esta_vivo():
                 print("\n--- Turno do Inimigo ---")
                 inimigo_atual.atacar(jogador)
@@ -147,14 +139,14 @@ def iniciar_jogo():
 
             if not jogador.esta_vivo():
                 print("\n" + "="*30)
-                print("☠️  VOCÊ FOI DERROTADO! ☠️")
+                print("VOCÊ FOI DERROTADO!")
                 print(f"Pontuação final: {placar.pontos}")
                 print("="*30)
                 input("\nPressione Enter para voltar ao menu...")
                 return
 
     print("\n" + "="*30)
-    print("🏆 PARABÉNS! Você derrotou todos os inimigos! �")
+    print("PARABÉNS! Você derrotou todos os inimigos!")
     print(f"Sua pontuação final é: {placar.pontos} pontos!")
     print("="*30)
     input("\nPressione Enter para voltar ao menu...")
@@ -171,8 +163,7 @@ def mostrar_opcoes():
     print("- Cada inimigo derrotado vale 10 pontos.")
     print("="*30)
     input("\nPressione Enter para voltar ao menu...")
-
-# --- Ponto de Entrada Principal ---
+    
 if __name__ == "__main__":
     menu = Menu()
     while True:
